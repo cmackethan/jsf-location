@@ -30,18 +30,18 @@
 	</script>
 
 	<h:form>
-		<p:remoteCommand name="loadResult" action="#{locationManager.load()}" process="@this" update="@form"/>
+		<p:remoteCommand name="loadResult" action="#{locations.load()}" process="@this" update="@form"/>
 
 
 		<p:commandButton value="Get My Current Location" onclick="getLocation();">
 			<f:ajax execute="@form" render="@none"/>
 		</p:commandButton>
 
-		<p:outputPanel layout="block" rendered="#{locationManager.location != null}">
+		<p:outputPanel layout="block" rendered="#{locations.location != null}">
 			<br/>
-			<h:outputText value="Latitude: #{locationManager.location.lat}"/>
+			<h:outputText value="Latitude: #{locations.location.lat}"/>
 			<br/>
-			<h:outputText value="Longitude: #{locationManager.location.lng}"/>
+			<h:outputText value="Longitude: #{locations.location.lng}"/>
 		</p:outputPanel>
 	</h:form>
 
