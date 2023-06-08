@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>Get Location</title>
+</h:head>
+
+<h:body>
+
+	<script type="text/javascript">
+		const getLocation = () => {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(
+						(position) => {
+							loadResult([{name: 'lat', value: position.coords.latitude}, {name: 'lng', value: position.coords.longitude}]);
+						},
+						() => {
+							console.error("Error getting position");
+						}
+				);
+			} else {
+				// Browser doesn't support Geolocation
+				console.error("Browser does not support geolocation");
+			}
+		};
+	</script>
+
+	<h:form>
+		<p:remoteCommand name="loadResult" action="#{locationManager.load()}" process="@this" update="@form"/>
+
+
+		<p:commandButton value="Get My Current Location" onclick="getLocation();">
+			<f:ajax execute="@form" render="@none"/>
+		</p:commandButton>
+
+		<p:outputPanel layout="block" rendered="#{locationManager.location != null}">
+			<h:outputText value="Latitude: #{locationManager.location.lat}"/>
+			<br/>
+			<h:outputText value="Longitude: #{locationManager.location.lng}"/>
+		</p:outputPanel>
+	</h:form>
+
+</h:body>
+
+</html>

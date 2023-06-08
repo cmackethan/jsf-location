@@ -3,7 +3,11 @@
         "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>JSF Dogs</display-name>
+  <display-name>GetMyLocation</display-name>
+
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+  </welcome-file-list>
 
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
