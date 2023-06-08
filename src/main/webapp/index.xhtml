@@ -38,6 +38,7 @@
 		</p:commandButton>
 
 		<p:outputPanel layout="block" rendered="#{locationManager.location != null}">
+			<br/>
 			<h:outputText value="Latitude: #{locationManager.location.lat}"/>
 			<br/>
 			<h:outputText value="Longitude: #{locationManager.location.lng}"/>
